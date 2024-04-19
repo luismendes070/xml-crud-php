@@ -1,9 +1,15 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <title>XML PHP</title>
+    </head>
+    <body>
 <?php
-class XML_CRUD {
-    private $xml_file;
+class XmlCrud {
+    private $xmlFile;
 
-    public function __construct($xml_file) {
-        $this->xml_file = $xml_file;
+    public function __construct($xmlFile) {
+        $this->xmlFile = $xmlFile;
     }
 
     public function create($data) {
@@ -16,12 +22,11 @@ class XML_CRUD {
     }
 
     public function read() {
-        $xml = simplexml_load_file($this->xml_file);
-        return $xml;
+        return simplexml_load_file($this->xmlFile);
     }
 
     public function update($id, $data) {
-        $xml = simplexml_load_file($this->xml_file);
+        $xml = simplexml_load_file($this->xmlFile);
         foreach ($xml->children() as $item) {
             if ((int)$item->id == $id) {
                 foreach ($data as $key => $value) {
@@ -29,17 +34,17 @@ class XML_CRUD {
                 }
             }
         }
-        $xml->asXML($this->xml_file);
+        $xml->asXML($this->xmlFile);
     }
 
     public function delete($id) {
-        $xml = simplexml_load_file($this->xml_file);
+        $xml = simplexml_load_file($this->xmlFile);
         foreach ($xml->children() as $key => $item) {
             if ((int)$item->id == $id) {
                 unset($xml->data[$key]);
             }
         }
-        $xml->asXML($this->xml_file);
+        $xml->asXML($this->xmlFile);
     }
 }
 
@@ -71,3 +76,5 @@ $xml_crud->update(1, $update_data);
 // Excluir um registro
 $xml_crud->delete(1);
 ?>
+    </body>
+</html>
