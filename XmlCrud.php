@@ -50,7 +50,7 @@ class XmlCrud {
 
 // Exemplo de uso:
 
-$xml_crud = new XmlCrud('data.xml');
+$xml_crud = new XmlCrud('public/data.xml');
 
 // Criar um novo registro
 $new_data = array(
