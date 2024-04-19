@@ -13,12 +13,12 @@ class XmlCrud {
     }
 
     public function create($data) {
-        $xml = simplexml_load_file($this->xml_file);
+        $xml = simplexml_load_file($this->xmlFile);
         $new_data = $xml->addChild('data');
         foreach ($data as $key => $value) {
             $new_data->addChild($key, $value);
         }
-        $xml->asXML($this->xml_file);
+        $xml->asXML($this->xmlFile);
     }
 
     public function read() {
@@ -50,7 +50,7 @@ class XmlCrud {
 
 // Exemplo de uso:
 
-$xml_crud = new XML_CRUD('data.xml');
+$xml_crud = new XmlCrud('data.xml');
 
 // Criar um novo registro
 $new_data = array(
